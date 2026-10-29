@@ -812,3 +812,21 @@ body > footer {
   color: #ff0033;
   font-size: 38px;
 }
+
+
+/* ===== SCROLL REVEAL ANIMATION ===== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s ease;
+  }
+
+  .reveal-ready.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

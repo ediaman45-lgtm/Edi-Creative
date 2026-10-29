@@ -220,3 +220,39 @@ if (contactForm) {
     window.location.href = mailtoLink;
   });
 }
+
+
+/* ===== SCROLL REVEAL ANIMATION ===== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(
+    "#about, #skills, #portfolio, #contact, " +
+    ".skill-card, .project-card, .contact-card"
+  );
+
+  if (
+    !("IntersectionObserver" in window) ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.08
+    }
+  );
+
+  elements.forEach((element) => {
+    element.classList.add("reveal-ready");
+    observer.observe(element);
+  });
+});

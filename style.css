@@ -806,3 +806,9 @@ body > footer {
   z-index: 2;
 }
 
+
+/* YOUTUBE LOGO */
+.contact-icon .fa-youtube {
+  color: #ff0033;
+  font-size: 38px;
+}

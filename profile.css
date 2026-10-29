@@ -296,3 +296,31 @@ footer {
   margin-bottom: 20px;
 }
 
+
+/* ===== MOBILE PROFILE OPTIMIZATION ===== */
+
+@media (max-width: 650px) {
+  .profile-grid,
+  .profile-hero,
+  .profile-navbar {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .profile-grid > * {
+    min-width: 0;
+  }
+
+  .profile-hero {
+    padding-top: 65px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

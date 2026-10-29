@@ -830,3 +830,47 @@ body > footer {
     transform: translateY(0);
   }
 }
+
+
+/* ===== MOBILE OPTIMIZATION ===== */
+
+@media (max-width: 768px) {
+
+  /* Mencegah elemen melebar keluar layar */
+  html, body {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  /* Jarak konten pada layar HP */
+  .section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Judul menyesuaikan layar */
+  h1 {
+    font-size: clamp(28px, 8vw, 42px);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: clamp(24px, 6vw, 34px);
+  }
+
+  /* Gambar tidak melewati lebar layar */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Kartu portofolio dan kontak */
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tombol lebih nyaman disentuh */
+  .contact-card {
+    width: 100%;
+  }
+}

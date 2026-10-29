@@ -696,3 +696,22 @@ footer {
   }
 }
 
+
+.contact-icon i {
+  font-size: 38px;
+  display: inline-block;
+}
+
+.fa-whatsapp {
+  color: #25D366;
+}
+
+.fa-instagram {
+  color: #E4405F;
+}
+
+.fa-envelope {
+  color: #38D9F5;
+}
+
+

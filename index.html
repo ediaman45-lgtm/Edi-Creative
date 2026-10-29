@@ -321,7 +321,108 @@
   </main>
 
   <footer>© 2026 Edi Creative. All Rights Reserved.</footer>
+<!-- ===== EDI CREATIVE AI CHATBOT ===== -->
+<button id="chatbotToggle" type="button" aria-label="Buka chatbot">🤖</button>
+
+<div id="chatbotBox">
+  <div class="chatbot-header">
+    🤖 Edi Creative AI
+    <button id="chatbotClose" type="button">✕</button>
+  </div>
+
+  <div id="chatbotMessages" class="chatbot-messages">
+    <div class="bot-message">
+      Halo! 👋 Selamat datang di Edi Creative.
+      Ada yang bisa saya bantu?
+    </div>
+  </div>
+
+  <form id="chatbotForm" class="chatbot-form">
+    <input
+      id="chatbotInput"
+      type="text"
+      placeholder="Tulis pertanyaan..."
+      autocomplete="off"
+      required
+    >
+    <button type="submit">Kirim</button>
+  </form>
+</div>
 
   <script src="script.js"></script>
+
+  <script>
+  
+/* ===== EDI CREATIVE CHATBOT ===== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("chatbotToggle");
+  const box = document.getElementById("chatbotBox");
+  const close = document.getElementById("chatbotClose");
+  const form = document.getElementById("chatbotForm");
+  const input = document.getElementById("chatbotInput");
+  const messages = document.getElementById("chatbotMessages");
+
+  if (!toggle || !box || !close || !form || !input || !messages) return;
+
+toggle.addEventListener("click", () => {
+    box.classList.toggle("active");
+    if (box.classList.contains("active")) {
+        input.focus();
+    }
+});
+
+  close.addEventListener("click", () => {
+    box.classList.remove("active");
+});
+
+  function addMessage(text, className) {
+    const message = document.createElement("div");
+    message.className = className;
+    message.textContent = text;
+    messages.appendChild(message);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function getReply(question) {
+    const q = question.toLowerCase();
+
+    if (/\b(halo|hai|hello|hi)\b/.test(q)) {
+      return "Halo! 👋 Selamat datang di Edi Creative!";
+    }
+
+    if (q.includes("portfolio") || q.includes("portofolio") || q.includes("karya")) {
+      return "Kamu bisa melihat hasil karya Edi Creative di bagian Portfolio website ini.";
+    }
+
+    if (q.includes("skill") || q.includes("keahlian")) {
+      return "Edi Creative memiliki keahlian dalam desain grafis, editing video, dan public speaking.";
+    }
+
+    if (q.includes("kontak") || q.includes("hubungi") || q.includes("contact")) {
+      return "Silakan kunjungi bagian Contact untuk menghubungi Edi Creative.";
+    }
+
+    if (q.includes("profil") || q.includes("tentang") || q.includes("siapa")) {
+      return "Edi Creative adalah website portofolio yang menampilkan profil, keterampilan, dan karya kreatif.";
+    }
+
+    return "Terima kasih sudah bertanya! 😊 Saat ini saya bisa membantu menjelaskan profil, skill, portfolio, dan kontak Edi Creative.";
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const question = input.value.trim();
+    if (!question) return;
+
+    addMessage(question, "user-message");
+    input.value = "";
+
+    addMessage(getReply(question), "bot-message");
+  });
+});
+</script>
 </body>
 </html>
+

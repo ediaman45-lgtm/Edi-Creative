@@ -1,0 +1,298 @@
+
+/* EDI CREATIVE - MY PROFILE */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #080d20;
+  color: #f1f5ff;
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(0, 229, 255, 0.09),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 40%,
+      rgba(145, 75, 255, 0.12),
+      transparent 40%
+    );
+}
+
+.profile-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 22px 8%;
+  border-bottom: 1px solid #24314b;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  text-decoration: none;
+  color: white;
+}
+
+.logo span {
+  color: #00e5ff;
+}
+
+.back-button {
+  color: #00e5ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+main {
+  max-width: 1050px;
+  margin: auto;
+  padding: 20px;
+}
+
+.profile-hero {
+  text-align: center;
+  padding: 70px 15px 50px;
+}
+
+.profile-photo {
+  width: 155px;
+  height: 155px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #00e5ff;
+  box-shadow: 0 0 35px #00e5ff44;
+}
+
+.eyebrow {
+  color: #00e5ff;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  margin-top: 28px;
+}
+
+.profile-hero h1 {
+  font-size: clamp(30px, 5vw, 54px);
+  margin: 10px 0;
+  line-height: 1.2;
+}
+
+.profile-hero h1 span {
+  color: #00e5ff;
+}
+
+.profile-role {
+  color: #c1b1ff;
+  font-weight: bold;
+}
+
+.profile-intro {
+  max-width: 650px;
+  margin: 18px auto;
+  color: #aebbd1;
+}
+
+.profile-section {
+  margin: 55px 0;
+}
+
+.profile-section h2 {
+  font-size: 26px;
+  margin-bottom: 22px;
+}
+
+.profile-section h2 i {
+  color: #00e5ff;
+  margin-right: 10px;
+}
+
+.profile-card {
+  background: rgba(18, 27, 53, 0.9);
+  border: 1px solid #293a5a;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  border-color: #00e5ff;
+}
+
+.profile-card h3 {
+  margin: 0 0 8px;
+}
+
+.profile-card p,
+.timeline-item p {
+  color: #aebbd1;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.card-icon {
+  color: #00e5ff;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.timeline {
+  border-left: 2px solid #00e5ff;
+  padding-left: 30px;
+  margin-left: 10px;
+}
+
+.timeline-item {
+  position: relative;
+  background: rgba(18, 27, 53, 0.9);
+  border: 1px solid #293a5a;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -38px;
+  top: 30px;
+  width: 12px;
+  height: 12px;
+  background: #00e5ff;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #00e5ff;
+}
+
+.timeline-item h3 {
+  margin: 10px 0 3px;
+}
+
+.timeline-item h4 {
+  margin: 0;
+  color: #c1b1ff;
+}
+
+.year {
+  color: #00e5ff;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.profile-contact {
+  text-align: center;
+  padding: 45px 20px;
+  background: rgba(18, 27, 53, 0.9);
+  border: 1px solid #293a5a;
+  border-radius: 20px;
+}
+
+.contact-button {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 26px;
+  border-radius: 30px;
+  background: #00e5ff;
+  color: #07101e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-button:hover {
+  background: #80f3ff;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  color: #8999b5;
+  border-top: 1px solid #24314b;
+}
+
+@media (max-width: 650px) {
+  .profile-navbar {
+    padding: 18px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-hero {
+    padding-top: 45px;
+  }
+
+  .profile-section h2 {
+    font-size: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .profile-card {
+    transition: none;
+  }
+}
+
+
+/* MY SKILLS - CATEGORY STYLING */
+
+.skills-intro {
+  color: #aebbd1;
+  margin-bottom: 30px;
+}
+
+.skills-category {
+  color: #f1f5ff;
+  font-size: 20px;
+  margin: 35px 0 20px;
+  padding-left: 15px;
+  border-left: 3px solid #00e5ff;
+}
+
+.skills-category i {
+  color: #00e5ff;
+  margin-right: 10px;
+}
+
+.learning-label {
+  display: inline-block;
+  color: #c1b1ff;
+  background: rgba(145, 75, 255, 0.12);
+  border: 1px solid rgba(145, 75, 255, 0.35);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+

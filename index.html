@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edi Creative | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#home" class="logo">EDI<span>CREATIVE.</span></a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="glow"></div>
+      <p class="eyebrow">WELCOME TO MY DIGITAL WORLD</p>
+      <h1>Hi, I'm <span>Edi Creative</span></h1>
+      <h2>I'm a <span id="typing"></span></h2>
+      <p>Mengubah ide kreatif menjadi karya visual yang menarik, modern, dan bermakna.</p>
+      <a href="#portfolio" class="btn">Explore My Work →</a>
+    </section>
+
+    
+<section id="about" class="section about-section">
+  <p class="eyebrow">GET TO KNOW ME</p>
+  <h2>About <span>Me.</span></h2>
+
+  <div class="about-container">
+
+    <!-- FOTO PROFIL -->
+    <div class="about-photo">
+      <div class="photo-glow"></div>
+      <img src="profile.png" alt="Foto Ediaman Telaumbanua">
+      <div class="photo-label">
+        <span class="status-dot"></span>
+        OPEN TO COLLABORATION
+      </div>
+    </div>
+
+    <!-- DESKRIPSI -->
+    <div class="about-content">
+      <p class="about-intro">HELLO, WORLD! 👋</p>
+
+      <h3>I'm <span>Ediaman Telaumbanua</span></h3>
+
+      <p class="about-role">
+        Information Systems Student
+        <span>@ BINUS University</span>
+      </p>
+
+      <p>
+        I'm a passionate Information Systems student
+        at BINUS University with a creative background
+        in Visual Communication Design.
+      </p>
+
+      <p>
+        My journey began in graphic design, video
+        editing, and public speaking. Today, I'm
+        exploring how technology, creativity, and
+        innovation can work together to build
+        meaningful digital experiences.
+      </p>
+
+      <p>
+        I believe that technology is more than just
+        code, and design is more than just visuals.
+        Together, they have the power to create
+        positive change.
+      </p>
+
+      <div class="about-quote">
+        "Where Creativity Meets Technology."
+      </div>
+
+      <div class="about-tags">
+        <span>🎓 BINUS University</span>
+        <span>💻 Information Systems</span>
+        <span>🎨 Graphic Design</span>
+        <span>🚀 Creative Thinker</span>
+      </div>
+
+      <a href="#contact" class="btn">
+        Let's Connect →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+    <section id="skills" class="section">
+      <p class="eyebrow">WHAT I DO</p>
+      <h2>My <span>Skills</span></h2>
+      <div class="cards">
+        <div class="card">
+          <div class="symbol">✦</div>
+          <h3>Graphic Design</h3>
+          <p>Photoshop, CorelDRAW, branding, dan desain visual.</p>
+        </div>
+        <div class="card">
+          <div class="symbol">▶</div>
+          <h3>Video Editing</h3>
+          <p>Editing video kreatif, konten digital, dan storytelling.</p>
+        </div>
+        <div class="card">
+          <div class="symbol">◈</div>
+          <h3>Public Speaking</h3>
+          <p>Presentasi, komunikasi, dan penyampaian ide.</p>
+        </div>
+      </div>
+    </section>
+
+    
+<section id="portfolio" class="section">
+  <p class="eyebrow">SELECTED WORK</p>
+  <h2>My <span>Portfolio</span></h2>
+
+  <div class="cards portfolio-cards">
+
+    <button class="card project portfolio-button"
+            data-gallery="graphic">
+      <div class="project-art">01</div>
+      <h3>Graphic Design</h3>
+      <p>Koleksi karya desain grafis.</p>
+      <span class="view-project">View Projects →</span>
+    </button>
+
+    <button class="card project portfolio-button"
+            data-gallery="branding">
+      <div class="project-art">02</div>
+      <h3>Creative Branding</h3>
+      <p>Eksplorasi identitas visual.</p>
+      <span class="view-project">View Projects →</span>
+    </button>
+
+    <button class="card project portfolio-button"
+            data-gallery="video">
+      <div class="project-art">03</div>
+      <h3>Video Projects</h3>
+      <p>Proyek video dan konten kreatif.</p>
+      <span class="view-project">View Projects →</span>
+    </button>
+
+  </div>
+</section>
+
+<!-- POPUP GALERI -->
+<dialog id="galleryModal" class="gallery-modal">
+  <div class="gallery-header">
+    <h2 id="galleryTitle">My Projects</h2>
+    <button id="closeGallery"
+            class="close-gallery"
+            aria-label="Tutup galeri">✕</button>
+  </div>
+
+  <div id="galleryGrid" class="gallery-grid"></div>
+</dialog>
+
+
+    
+<!-- CONTACT SECTION -->
+<section id="contact" class="section contact-section">
+
+  <div class="contact-heading">
+    <p class="eyebrow">LET'S CONNECT</p>
+    <h2>Let's Work <span>Together.</span></h2>
+    <p>
+      Have a project in mind?
+      Let's create something amazing together!
+    </p>
+  </div>
+
+  <!-- SOCIAL CONTACT -->
+  <div class="contact-cards">
+
+    <a
+      href="https://wa.me/6283846128753"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact-card"
+    >
+      <div class="contact-icon">💬</div>
+      <h3>WhatsApp</h3>
+      <p>Let's have a conversation</p>
+      <span>Chat Now →</span>
+    </a>
+
+    <a
+      href="https://instagram.com/rauwrr03"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact-card"
+    >
+      <div class="contact-icon">📸</div>
+      <h3>Instagram</h3>
+      <p>Explore my creative journey</p>
+      <span>Visit Profile →</span>
+    </a>
+
+    <a
+      href="mailto:ediaman45@gmail.com"
+      class="contact-card"
+    >
+      <div class="contact-icon">✉️</div>
+      <h3>Email</h3>
+      <p>For business inquiries</p>
+      <span>Send Email →</span>
+    </a>
+
+  </div>
+
+  <!-- MESSAGE FORM -->
+  <div class="contact-form-wrapper">
+
+    <div class="form-heading">
+      <h3>Send Me a Message</h3>
+      <p>
+        Tell me about your idea or project.
+        I'd love to hear from you.
+      </p>
+    </div>
+
+    <form id="contactForm">
+
+      <div class="form-group">
+        <label for="contactName">Your Name</label>
+        <input
+          type="text"
+          id="contactName"
+          name="name"
+          placeholder="Enter your name"
+          autocomplete="name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="contactEmail">Email Address</label>
+        <input
+          type="email"
+          id="contactEmail"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="contactMessage">Your Message</label>
+        <textarea
+          id="contactMessage"
+          name="message"
+          rows="6"
+          placeholder="Tell me about your project..."
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit" class="send-btn">
+        Send Message →
+      </button>
+
+      <p id="formStatus" role="status"
+         aria-live="polite"></p>
+
+    </form>
+
+  </div>
+
+</section>
+
+  </main>
+
+  <footer>© 2026 Edi Creative. All Rights Reserved.</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

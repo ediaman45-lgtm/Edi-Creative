@@ -906,3 +906,153 @@ body > footer {
   box-shadow: 0 0 25px #a78bfa;
 }
 
+
+/* ===== EDI CREATIVE AI CHATBOT ===== */
+
+#chatbotToggle {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 64px;
+  height: 64px;
+  border: 2px solid #67e8f9;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06b6d4, #7c3aed);
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 0 22px #06b6d488;
+  transition: transform 0.3s;
+}
+
+#chatbotToggle:hover {
+  transform: scale(1.1);
+}
+
+#chatbotBox {
+  position: fixed;
+  right: 24px;
+  bottom: 100px;
+  width: 350px;
+  max-width: calc(100vw - 32px);
+  height: 460px;
+  max-height: calc(100vh - 120px);
+  display: none;
+  flex-direction: column;
+  background: #0b1225;
+  border: 1px solid #22d3ee;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 9999;
+  box-shadow: 0 0 35px #06b6d455;
+  color: white;
+}
+
+#chatbotBox.active {
+  display: flex;
+}
+
+.chatbot-header {
+  padding: 18px;
+  background: linear-gradient(135deg, #0891b2, #6d28d9);
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.chatbot-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bot-message,
+.user-message {
+  padding: 11px 14px;
+  border-radius: 14px;
+  max-width: 85%;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.bot-message {
+  background: #1e293b;
+  align-self: flex-start;
+}
+
+.user-message {
+  background: linear-gradient(135deg, #0891b2, #6d28d9);
+  align-self: flex-end;
+}
+
+.chatbot-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid #334155;
+}
+
+.chatbot-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #111827;
+  color: white;
+  outline: none;
+}
+
+.chatbot-form button {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #06b6d4;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  #chatbotToggle {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  #chatbotBox {
+    right: 16px;
+    bottom: 92px;
+  }
+}
+
+/* Posisi AI Chatbot agar tidak menutupi tombol musik */
+#chatbotToggle {
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    z-index: 9999;
+}
+
+/* Perbaikan tampilan chatbot */
+#chatbotBox {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 180px;
+    width: min(350px, calc(100vw - 40px));
+    height: 420px;
+    background: #111827;
+    color: white;
+    border: 1px solid #22d3ee;
+    border-radius: 18px;
+    z-index: 10000;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+#chatbotBox.active {
+    display: flex;
+}

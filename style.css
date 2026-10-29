@@ -874,3 +874,35 @@ body > footer {
     width: 100%;
   }
 }
+
+
+/* ===== EDI CREATIVE MUSIC BUTTON ===== */
+#musicToggle {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 2px solid #00eaff;
+  background: #07152b;
+  color: #00eaff;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 0 20px #00eaff80;
+  transition: 0.3s ease;
+}
+
+#musicToggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px #00eaff;
+}
+
+#musicToggle.playing {
+  background: #7c3aed;
+  color: white;
+  border-color: #a78bfa;
+  box-shadow: 0 0 25px #a78bfa;
+}
+

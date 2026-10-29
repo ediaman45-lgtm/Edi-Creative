@@ -256,3 +256,35 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(element);
   });
 });
+
+
+/* ===== EDI CREATIVE MUSIC PLAYER ===== */
+
+const backgroundMusic = document.getElementById("backgroundMusic");
+const musicToggle = document.getElementById("musicToggle");
+
+if (backgroundMusic && musicToggle) {
+  backgroundMusic.volume = 0.25;
+
+  musicToggle.addEventListener("click", async () => {
+    if (backgroundMusic.paused) {
+      try {
+        await backgroundMusic.play();
+      } catch (error) {
+        console.error("Musik gagal diputar:", error);
+      }
+    } else {
+      backgroundMusic.pause();
+    }
+  });
+
+  backgroundMusic.addEventListener("play", () => {
+    musicToggle.classList.add("playing");
+    musicToggle.setAttribute("aria-label", "Jeda musik");
+  });
+
+  backgroundMusic.addEventListener("pause", () => {
+    musicToggle.classList.remove("playing");
+    musicToggle.setAttribute("aria-label", "Putar musik");
+  });
+}

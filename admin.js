@@ -7,7 +7,7 @@ import {
   signOut,
   onAuthStateChanged,
   setPersistence,
-  browserLocalPersistence
+  browserSessionPersistence,
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
 import {
   getFirestore,
@@ -17,10 +17,6 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 const auth = getAuth(app);
-setPersistence(auth, browserLocalPersistence)
-  .catch((error) => {
-    console.error("Gagal menyimpan sesi login:", error);
-  });
 const db = getFirestore(app);
 
 const loginForm = document.getElementById("loginForm");

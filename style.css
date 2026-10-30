@@ -1502,3 +1502,66 @@ padding: 15px 20px 35px;
   box-shadow: 0 0 18px rgba(34, 211, 238, 0.6);
   transform: translateY(-3px);
 }
+
+
+/* NEON BERJALAN MENGELILINGI FOTO */
+
+@property --neon-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.about-photo {
+    --neon-angle: 0deg;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 6px;
+    border: none;
+    border-radius: 28px;
+    background: conic-gradient(
+        from var(--neon-angle),
+        #101b38 0deg,
+        #101b38 65deg,
+        #00eaff 85deg,
+        #ffffff 95deg,
+        #00eaff 105deg,
+        #101b38 125deg,
+        #101b38 245deg,
+        #a855f7 265deg,
+        #ffffff 275deg,
+        #a855f7 285deg,
+        #101b38 305deg
+    );
+    animation: neonMengelilingi 3s linear infinite;
+    box-shadow:
+        0 0 12px rgba(0, 234, 255, 0.6),
+        0 0 30px rgba(0, 234, 255, 0.25),
+        0 0 45px rgba(168, 85, 247, 0.2);
+}
+
+/* Hilangkan bentuk neon lama */
+.about-photo::before,
+.about-photo::after,
+.about-photo .photo-glow {
+    display: none !important;
+}
+
+/* Foto tidak ikut berputar */
+.about-photo > img {
+    display: block;
+    width: 100%;
+    border-radius: 22px;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes neonMengelilingi {
+    from {
+        --neon-angle: 0deg;
+    }
+    to {
+        --neon-angle: 360deg;
+    }
+}

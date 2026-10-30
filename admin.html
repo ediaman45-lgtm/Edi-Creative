@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Stories | EDI CREATIVE</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #090d1b;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      padding: 36px 28px;
+      background: #151b2e;
+      border: 1px solid #303b58;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    h1 { color: #59d8ff; margin-bottom: 8px; }
+    p { color: #aab4ca; margin-bottom: 28px; }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 14px;
+      background: #0b1020;
+      border: 1px solid #35405d;
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #28b9ef;
+      color: #07101b;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 16px;
+      color: #ff8585;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="login-card">
+    <h1>EDI CREATIVE</h1>
+    <p>Admin Stories Dashboard</p>
+
+    <form id="loginForm">
+      <input
+        type="email"
+        id="email"
+        placeholder="Email Admin"
+        required
+      >
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        required
+      >
+
+      <button type="submit">Login Admin</button>
+    </form>
+
+    <div id="message"></div>
+    <section id="adminDashboard" style="display: none;">
+  <h2>Dashboard Stories</h2>
+  <p>Selamat datang di EDI CREATIVE!</p>
+
+  <h3>Upload Story Baru</h3>
+
+  <form id="storyForm">
+    <input
+      type="text"
+      id="storyTitle"
+      placeholder="Judul Story"
+      required
+    >
+
+    <select id="storyCategory">
+      <option value="my-day">My Day</option>
+      <option value="projects">Projects</option>
+      <option value="behind-scenes">Behind the Scenes</option>
+      <option value="achievements">Achievements</option>
+    </select>
+
+    <input
+      type="file"
+      id="storyFile"
+      accept="image/*,video/*"
+      required
+    >
+
+    <button type="submit">Upload Story</button>
+  </form>
+
+  <h3>Daftar Stories</h3>
+  <div id="storiesList"></div>
+
+  <button type="button" id="logoutBtn">Logout</button>
+</section>
+  </main>
+  
+<script type="module" src="./admin.js"></script>
+<script type="module" src="./story-upload.js"></script>
+</body>
+</html>

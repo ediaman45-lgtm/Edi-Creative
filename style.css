@@ -1291,3 +1291,192 @@ padding: 15px 20px 35px;
     animation: none;
   }
 }
+
+
+/* INSTAGRAM STORIES */
+.stories-section {
+  padding: 60px 8%;
+  background: #080b17;
+}
+
+.stories-section h2 {
+  color: #ffffff;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.stories-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 10px 0 20px;
+}
+
+.story-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 100px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.story-circle img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #24c5ff;
+  padding: 4px;
+  box-shadow: 0 0 16px rgba(36, 197, 255, 0.4);
+}
+
+.story-circle span {
+  font-size: 14px;
+  text-align: center;
+}
+
+/* TAMPILAN SAAT STORY DIBUKA */
+.story-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.story-viewer img,
+.story-viewer video {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.story-close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+
+/* INSTAGRAM-STYLE STORY PLAYER */
+.story-player {
+  position: relative;
+  width: min(420px, 100%);
+  height: min(740px, 95dvh);
+  background: #111827;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.story-progress-container {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  gap: 5px;
+  z-index: 5;
+}
+
+.story-progress-bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.story-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: white;
+}
+
+.story-player-title {
+  position: absolute;
+  top: 30px;
+  left: 18px;
+  z-index: 5;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.story-media-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-media-container img,
+.story-media-container video {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.story-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.story-prev {
+  left: 10px;
+}
+
+.story-next {
+  right: 10px;
+}
+
+.story-player .story-close {
+  top: 28px;
+  right: 15px;
+  z-index: 10;
+  font-size: 23px;
+}
+
+@media (max-width: 600px) {
+  .story-player {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+
+  .stories-section {
+    padding: 40px 6%;
+  }
+
+  .story-circle img {
+    width: 76px;
+    height: 76px;
+  }
+}

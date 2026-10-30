@@ -149,3 +149,16 @@ onSnapshot(collection(db, "stories"), (snapshot) => {
     storiesList.appendChild(item);
   });
 });
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    try {
+        await signOut(auth);
+        document.getElementById("adminDashboard").style.display = "none";
+        document.getElementById("loginForm").style.display = "block";
+        document.getElementById("loginForm").reset();
+        message.textContent = "";
+    } catch (error) {
+        console.error("Logout gagal:", error);
+        alert("Gagal logout. Silakan coba lagi.");
+    }
+});

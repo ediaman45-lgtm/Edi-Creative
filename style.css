@@ -1056,3 +1056,56 @@ body > footer {
 #chatbotBox.active {
     display: flex;
 }
+
+
+/* MY PROFILE SHORTCUT */
+.profile-shortcut {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+padding: 15px 20px 35px;
+}
+
+.profile-shortcut-label {
+  color: #20d9ef;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 14px;
+}
+
+.profile-shortcut h2 {
+  color: #f5f5ff;
+  font-size: clamp(26px, 4vw, 38px);
+  margin-bottom: 12px;
+}
+
+.profile-shortcut > p:not(.profile-shortcut-label) {
+  color: #aeb8d2;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
+.profile-shortcut .btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* RAPATKAN JARAK ABOUT DAN MY PROFILE */
+#about {
+  padding-bottom: 25px;
+}
+
+.profile-shortcut {
+  margin-top: 0;
+  padding-top: 10px;
+}
+
+/* RAPATKAN JARAK MY PROFILE DAN MY SKILLS */
+#skills {
+  padding-top: 35px;
+}
+
+.profile-shortcut {
+  padding-bottom: 10px;
+}

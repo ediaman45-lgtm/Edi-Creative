@@ -113,6 +113,17 @@
   </div>
 </section>
 
+<!-- MY PROFILE BUTTON -->
+<div class="profile-shortcut">
+  <p class="profile-shortcut-label">GET TO KNOW ME</p>
+  <h2>Want to Know Me Better?</h2>
+  <p>Explore my journey, background, and achievements.</p>
+
+  <a href="profile.html" class="btn">
+    👤 View My Profile →
+  </a>
+</div>
+
 
     <section id="skills" class="section">
       <p class="eyebrow">WHAT I DO</p>
@@ -410,17 +421,40 @@ toggle.addEventListener("click", () => {
     return "Terima kasih sudah bertanya! 😊 Saat ini saya bisa membantu menjelaskan profil, skill, portfolio, dan kontak Edi Creative.";
   }
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
 
-    const question = input.value.trim();
-    if (!question) return;
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    addMessage(question, "user-message");
-    input.value = "";
+  const question = input.value.trim();
+  if (!question) return;
 
-    addMessage(getReply(question), "bot-message");
-  });
+  addMessage(question, "user-message");
+  input.value = "";
+
+ 
+const sendButton = form.querySelector('button[type="submit"]');
+
+if (sendButton) sendButton.disabled = true;
+
+addMessage("AI sedang mengetik...", "bot-message");
+
+setTimeout(() => {
+  // Hapus pesan indikator mengetik
+  const botMessages = document.querySelectorAll(".bot-message");
+  const typingMessage = botMessages[botMessages.length - 1];
+
+  if (typingMessage && typingMessage.textContent.includes("AI sedang mengetik")) {
+    typingMessage.remove();
+  }
+
+  // Jawaban chatbot gratis berdasarkan pertanyaan pengunjung
+  const reply = getReply(question);
+  addMessage(reply, "bot-message");
+
+  if (sendButton) sendButton.disabled = false;
+}, 600);
+
+});
 });
 </script>
 </body>

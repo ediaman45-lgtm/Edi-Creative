@@ -1109,3 +1109,185 @@ padding: 15px 20px 35px;
 .profile-shortcut {
   padding-bottom: 10px;
 }
+
+/* ===== HERO ANIMATION ===== */
+
+.hero .eyebrow {
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero h1 {
+  animation: fadeUp 1s ease 0.2s both;
+}
+
+.hero h2 {
+  animation: fadeUp 1s ease 0.4s both;
+}
+
+.hero p:not(.eyebrow) {
+  animation: fadeUp 1s ease 0.6s both;
+}
+
+.hero .btn {
+  animation: fadeUp 1s ease 0.8s both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero .btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(34, 211, 238, 0.35);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .eyebrow,
+  .hero h1,
+  .hero h2,
+  .hero p,
+  .hero .btn {
+    animation: none;
+  }
+}
+
+/* ===== ANIMATED HERO GLOW ===== */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  top: 5%;
+  right: 5%;
+  background: radial-gradient(
+    circle,
+    rgba(124, 58, 237, 0.28),
+    transparent 70%
+  );
+  filter: blur(45px);
+  animation: glowMove 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  bottom: 0;
+  left: 5%;
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.18),
+    transparent 70%
+  );
+  filter: blur(50px);
+  animation: glowMove 10s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes glowMove {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(35px, -25px) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero::after {
+    animation: none;
+  }
+}
+
+/* ===== HERO LOGO EDI CREATIVE ===== */
+
+#home {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-logo {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  width: 300px;
+  z-index: 1;
+  animation: ediFloat 4s ease-in-out infinite;
+}
+
+.hero-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(0, 238, 255, 0.3));
+}
+
+@keyframes ediFloat {
+  0%, 100% {
+    transform: translateY(-50%);
+  }
+
+  50% {
+    transform: translateY(-56%);
+  }
+}
+
+/* Tampilan HP */
+@media (max-width: 900px) {
+  .hero-logo {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: min(75%, 300px);
+    margin: 35px auto 0;
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo {
+    animation: none;
+    transform: translateY(-50%);
+  }
+}
+
+
+.hero-logo img {
+  animation: logoFloat 4s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo img {
+    animation: none;
+  }
+}

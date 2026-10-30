@@ -1480,3 +1480,25 @@ padding: 15px 20px 35px;
     height: 76px;
   }
 }
+
+/* Tombol Admin Stories di Footer */
+.admin-footer-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 22px;
+  background: transparent;
+  color: #22d3ee;
+  border: 1px solid #22d3ee;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.admin-footer-btn:hover {
+  background: #22d3ee;
+  color: #080d1c;
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.6);
+  transform: translateY(-3px);
+}

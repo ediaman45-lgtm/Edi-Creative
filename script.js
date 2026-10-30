@@ -103,11 +103,10 @@ const portfolioData = {
       }
     ]
   },
-
-  branding: {
-    title: "Creative Branding",
+  uiux: {
+    title: "My UI/UX Design Projects",
     projects: []
-  },
+},
 
   video: {
     title: "Video Projects",
@@ -288,3 +287,40 @@ if (backgroundMusic && musicToggle) {
     musicToggle.setAttribute("aria-label", "Putar musik");
   });
 }
+
+
+/* ===== PORTFOLIO COMING SOON ===== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const galleryGrid = document.getElementById("galleryGrid");
+
+    document.querySelectorAll("[data-gallery]").forEach(button => {
+        button.addEventListener("click", () => {
+            const category = button.dataset.gallery;
+
+            // Biarkan kode galeri lama bekerja terlebih dahulu
+            setTimeout(() => {
+                if (!galleryGrid) return;
+
+                const data = typeof portfolioData !== "undefined"
+                    ? portfolioData[category]
+                    : null;
+
+                if (data && Array.isArray(data.projects)
+                    && data.projects.length === 0) {
+
+                    galleryGrid.innerHTML = `
+                        <div class="portfolio-coming-soon">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Coming Soon!</h3>
+                            <p>
+                                Exciting creative projects are
+                                on the way. Stay tuned!
+                            </p>
+                        </div>
+                    `;
+                }
+            }, 0);
+        });
+    });
+});

@@ -4,7 +4,10 @@ import { app } from "./firebase-config.js";
 import {
   getAuth,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
 import {
   getFirestore,
@@ -14,14 +17,30 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 const auth = getAuth(app);
+setPersistence(auth, browserLocalPersistence)
+  .catch((error) => {
+    console.error("Gagal menyimpan sesi login:", error);
+  });
 const db = getFirestore(app);
 
 const loginForm = document.getElementById("loginForm");
 const message = document.getElementById("message");
 
+
 // Ganti nanti dengan UID admin dari Firebase Authentication
 const ADMIN_UID = "Q6utzRG0evSqffWQXPhDwKiw42q2";
 
+onAuthStateChanged(auth, (user) => {
+  const dashboard = document.getElementById("adminDashboard");
+
+  if (user && user.uid === ADMIN_UID) {
+    loginForm.style.display = "none";
+    dashboard.style.display = "block";
+  } else {
+    loginForm.style.display = "block";
+    dashboard.style.display = "none";
+  }
+});
 
 loginForm.addEventListener("submit", async (event) => {
   event.preventDefault();

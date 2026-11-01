@@ -14,8 +14,9 @@ const container = document.getElementById("storiesContainer");
 
 const categories = [
   { id: "my-day", name: "My Day" },
+  { id: "campus", name: "Campus" },
+  { id: "behind-scenes", name: "Design" },
   { id: "projects", name: "Projects" },
-  { id: "behind-scenes", name: "Behind the Scenes" },
   { id: "achievements", name: "Achievements" }
 ];
 
@@ -43,21 +44,32 @@ onSnapshot(storiesQuery, (snapshot) => {
         return timeA - timeB;
       });
 
-    if (!items.length) return;
+   const isEmpty = items.length === 0;
 
     const button = document.createElement("button");
     button.className = "story-circle";
     button.type = "button";
 
     const image = document.createElement("img");
-    image.src = items[items.length - 1].mediaUrl;
-    image.alt = category.name;
+
+image.src = isEmpty
+  ? "logo-edi.png"
+  : items[items.length - 1].mediaUrl;
+
+image.alt = category.name;
 
     const label = document.createElement("span");
     label.textContent = category.name;
 
     button.append(image, label);
-    button.addEventListener("click", () => openStories(items, category.name));
+    button.addEventListener("click", () => {
+  if (isEmpty) {
+    alert("Belum ada Stories di kategori ini.");
+    return;
+  }
+
+  openStories(items, category.name);
+});
 
     container.appendChild(button);
   });

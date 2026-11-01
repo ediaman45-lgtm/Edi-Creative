@@ -309,16 +309,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (data && Array.isArray(data.projects)
                     && data.projects.length === 0) {
 
-                    galleryGrid.innerHTML = `
-                        <div class="portfolio-coming-soon">
-                            <i class="fas fa-rocket"></i>
-                            <h3>Coming Soon!</h3>
-                            <p>
-                                Exciting creative projects are
-                                on the way. Stay tuned!
-                            </p>
-                        </div>
-                    `;
+galleryGrid.innerHTML = `
+  <div class="portfolio-coming-soon">
+    <img
+      src="giftory-images/Home.png"
+      alt="Preview aplikasi Giftory"
+      style="width:100%;max-width:260px;border-radius:15px;margin-bottom:20px;"
+    >
+
+    <h3>Giftory — UI/UX Design</h3>
+
+    <p>
+      Desain aplikasi Giftory menggunakan Figma,
+      mulai dari wireframe, prototype,
+      hingga pengembangan aplikasi web.
+    </p>
+
+    <a href="giftory.html"
+       class="btn"
+       style="display:inline-block;margin-top:20px;">
+      View Giftory Project →
+    </a>
+  </div>
+`;
                 }
             }, 0);
         });

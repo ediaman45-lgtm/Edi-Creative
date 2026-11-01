@@ -4,9 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Stories | EDI CREATIVE</title>
+  <title>Admin Dashboard | EDI CREATIVE</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -22,7 +25,7 @@
 
     .login-card {
       width: 100%;
-      max-width: 400px;
+      max-width: 650px;
       padding: 36px 28px;
       background: #151b2e;
       border: 1px solid #303b58;
@@ -30,10 +33,27 @@
       text-align: center;
     }
 
-    h1 { color: #59d8ff; margin-bottom: 8px; }
-    p { color: #aab4ca; margin-bottom: 28px; }
+    h1 {
+      color: #59d8ff;
+      margin-bottom: 8px;
+    }
 
-    input {
+    h2 {
+      margin-top: 25px;
+    }
+
+    h3 {
+      margin-top: 28px;
+    }
+
+    p {
+      color: #aab4ca;
+      margin-bottom: 24px;
+    }
+
+    input,
+    select,
+    textarea {
       width: 100%;
       padding: 14px;
       margin-bottom: 14px;
@@ -42,6 +62,10 @@
       border-radius: 10px;
       color: white;
       font-size: 15px;
+    }
+
+    input[type="file"] {
+      cursor: pointer;
     }
 
     button {
@@ -54,6 +78,11 @@
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    button:hover {
+      background: #59d8ff;
     }
 
     #message {
@@ -61,18 +90,72 @@
       color: #ff8585;
       font-size: 14px;
     }
+
+    .manager-section {
+      margin-top: 30px;
+      padding: 22px;
+      background: #101729;
+      border: 1px solid #303b58;
+      border-radius: 15px;
+    }
+
+    .manager-section h2 {
+      color: #59d8ff;
+    }
+
+    .manager-section p {
+      font-size: 14px;
+    }
+
+    .status-message {
+      margin: 12px 0;
+      color: #65e6a0;
+      font-size: 14px;
+    }
+
+    .item-list {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    #logoutBtn {
+      margin-top: 30px;
+      background: #ff6464;
+      color: white;
+    }
+
+    #logoutBtn:hover {
+      background: #ff8585;
+    }
+
+    @media (max-width: 600px) {
+      .login-card {
+        padding: 24px 16px;
+      }
+
+      .manager-section {
+        padding: 16px;
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <main class="login-card">
+
     <h1>EDI CREATIVE</h1>
-    <p>Admin Stories Dashboard</p>
+    <p>Admin Dashboard</p>
+
+    <!-- LOGIN ADMIN -->
 
     <form id="loginForm">
+
       <input
         type="email"
         id="email"
         placeholder="Email Admin"
+        autocomplete="username"
         required
       >
 
@@ -80,53 +163,178 @@
         type="password"
         id="password"
         placeholder="Password"
+        autocomplete="current-password"
         required
       >
 
-      <button type="submit">Login Admin</button>
+      <button type="submit">
+        Login Admin
+      </button>
+
     </form>
 
     <div id="message"></div>
-    <section id="adminDashboard" style="display: none;">
-  <h2>Dashboard Stories</h2>
-  <p>Selamat datang di EDI CREATIVE!</p>
 
-  <h3>Upload Story Baru</h3>
+    <!-- DASHBOARD ADMIN -->
 
-  <form id="storyForm">
-    <input
-      type="text"
-      id="storyTitle"
-      placeholder="Judul Story"
-      required
+    <section
+      id="adminDashboard"
+      style="display:none;"
     >
 
-    <select id="storyCategory">
-  <option value="my-day">My Day</option>
-  <option value="campus">Campus</option>
-  <option value="behind-scenes">Design</option>
-  <option value="projects">Projects</option>
-  <option value="achievements">Achievements</option>
-</select>
+      <h2>Dashboard EDI CREATIVE</h2>
+      <p>Kelola konten website melalui dashboard admin.</p>
 
-    <input
-      type="file"
-      id="storyFile"
-      accept="image/*,video/*"
-      required
-    >
+      <!-- STORIES MANAGER -->
 
-    <button type="submit">Upload Story</button>
-  </form>
+      <div class="manager-section">
 
-  <h3>Daftar Stories</h3>
-  <div id="storiesList"></div>
+        <h2>Stories Manager</h2>
+        <p>Upload dan kelola Instagram Stories.</p>
 
-  <button type="button" id="logoutBtn">Logout</button>
-</section>
+        <h3>Upload Story Baru</h3>
+
+        <form id="storyForm">
+
+          <input
+            type="text"
+            id="storyTitle"
+            placeholder="Judul Story"
+            required
+          >
+
+          <select id="storyCategory">
+
+            <option value="my-day">
+              My Day
+            </option>
+
+            <option value="campus">
+              Campus
+            </option>
+
+            <option value="behind-scenes">
+              Design
+            </option>
+
+            <option value="projects">
+              Projects
+            </option>
+
+            <option value="achievements">
+              Achievements
+            </option>
+
+          </select>
+
+          <input
+            type="file"
+            id="storyFile"
+            accept="image/*,video/*"
+            required
+          >
+
+          <button type="submit">
+            Upload Story
+          </button>
+
+        </form>
+
+        <h3>Daftar Stories</h3>
+
+        <div
+          id="storiesList"
+          class="item-list"
+        ></div>
+
+      </div>
+
+      <!-- GRAPHIC DESIGN MANAGER -->
+
+      <div class="manager-section">
+
+        <h2>Graphic Design Manager</h2>
+
+        <p>
+          Tambahkan karya desain grafis ke portfolio
+          tanpa perlu mengedit kode setiap kali upload.
+        </p>
+
+        <h3>Upload Desain Baru</h3>
+
+        <form id="graphicForm">
+
+          <input
+            type="text"
+            id="graphicTitle"
+            placeholder="Judul Desain"
+            required
+          >
+
+          <textarea
+            id="graphicDescription"
+            placeholder="Deskripsi Desain"
+            rows="4"
+            required
+          ></textarea>
+
+          <input
+            type="file"
+            id="graphicFile"
+            accept="image/*"
+            required
+          >
+
+          <button type="submit">
+            Upload Graphic Design
+          </button>
+
+        </form>
+
+        <div
+          id="graphicStatus"
+          class="status-message"
+          role="status"
+        ></div>
+
+        <h3>Daftar Graphic Design</h3>
+
+        <div
+          id="graphicList"
+          class="item-list"
+        ></div>
+
+      </div>
+
+      <!-- LOGOUT -->
+
+      <button
+        type="button"
+        id="logoutBtn"
+      >
+        Logout
+      </button>
+
+    </section>
+
   </main>
-  
-<script type="module" src="./admin.js"></script>
-<script type="module" src="./story-upload.js"></script>
+
+  <!-- SCRIPT STORIES DAN LOGIN -->
+  <script
+    type="module"
+    src="./admin.js"
+  ></script>
+
+  <script
+    type="module"
+    src="./story-upload.js"
+  ></script>
+
+  <!-- SCRIPT GRAPHIC DESIGN -->
+  <script
+    type="module"
+    src="./graphic-admin.js"
+  ></script>
+
 </body>
 </html>

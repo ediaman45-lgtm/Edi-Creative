@@ -306,8 +306,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     ? portfolioData[category]
                     : null;
 
-                if (data && Array.isArray(data.projects)
-                    && data.projects.length === 0) {
+                if (
+  category === "uiux" &&
+  data &&
+  Array.isArray(data.projects) &&
+  data.projects.length === 0
+) {
 
 galleryGrid.innerHTML = `
   <div class="portfolio-coming-soon">

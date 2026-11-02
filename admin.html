@@ -306,6 +306,70 @@
 
       </div>
 
+<!-- UI/UX DESIGN MANAGER -->
+<div class="manager-section">
+
+  <h2>🎨 UI/UX Design Manager</h2>
+
+  <p>
+    Tambahkan proyek UI/UX Design ke portfolio
+    tanpa perlu mengedit kode setiap kali upload.
+  </p>
+
+  <h3>Upload Proyek UI/UX Baru</h3>
+
+  <form id="uiuxForm">
+
+    <input
+      type="text"
+      id="uiuxTitle"
+      placeholder="Judul Proyek (contoh: Giftory)"
+      required
+    >
+
+    <textarea
+      id="uiuxDescription"
+      placeholder="Deskripsi Proyek UI/UX"
+      rows="4"
+      required
+    ></textarea>
+
+    <input
+      type="url"
+      id="uiuxLink"
+      placeholder="Link Figma atau website proyek (https://...)"
+      required
+    >
+
+    <input
+      type="file"
+      id="uiuxFile"
+      accept="image/png,image/jpeg,image/webp"
+      required
+    >
+
+    <button type="submit">
+      Upload UI/UX Design
+    </button>
+
+  </form>
+
+  <div
+    id="uiuxStatus"
+    class="status-message"
+    role="status"
+  ></div>
+
+  <h3>Daftar Proyek UI/UX</h3>
+
+  <div
+    id="uiuxList"
+    class="item-list"
+  ></div>
+
+</div>
+<!-- END UI/UX DESIGN MANAGER -->
+
       <!-- LOGOUT -->
 
       <button
@@ -329,6 +393,7 @@
     type="module"
     src="./story-upload.js"
   ></script>
+  <script type="module" src="./uiux-admin.js"></script>
 
   <!-- SCRIPT GRAPHIC DESIGN -->
   <script

@@ -1882,3 +1882,19 @@ padding: 15px 20px 35px;
     min-height: 0;
   }
 }
+
+/* Perbaiki posisi judul popup portfolio */
+#galleryModal {
+  padding-top: 24px;
+}
+
+#galleryModal .gallery-header {
+  position: relative;
+  padding-top: 12px;
+  padding-bottom: 20px;
+}
+
+#galleryModal .gallery-header h2 {
+  margin-top: 0;
+  line-height: 1.4;
+}

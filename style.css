@@ -1764,3 +1764,55 @@ padding: 15px 20px 35px;
     width: 100%;
   }
 }
+
+
+/* =====================================
+   UI/UX DESIGN GALLERY - CARD LAYOUT
+===================================== */
+
+#galleryModal .gallery-grid:has([data-uiux-project]) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+/* Kotak proyek UI/UX dari Firebase */
+#galleryModal .gallery-item[data-uiux-project] {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+/* Gambar preview proyek */
+#galleryModal .gallery-item[data-uiux-project] img {
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* Judul dan deskripsi */
+#galleryModal .gallery-item[data-uiux-project] h3,
+#galleryModal .gallery-item[data-uiux-project] p {
+  text-align: center;
+}
+
+/* Tombol proyek */
+#galleryModal .gallery-item[data-uiux-project] .btn {
+  align-self: center;
+  margin-top: 20px;
+  text-align: center;
+  color: #07101b;
+}
+
+/* Tampilan HP */
+@media (max-width: 650px) {
+  #galleryModal .gallery-grid:has([data-uiux-project]) {
+    grid-template-columns: 1fr;
+  }
+}

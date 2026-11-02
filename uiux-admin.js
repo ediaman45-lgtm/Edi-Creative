@@ -32,6 +32,17 @@ const uiuxFile = document.getElementById("uiuxFile");
 const uiuxStatus = document.getElementById("uiuxStatus");
 const uiuxList = document.getElementById("uiuxList");
 
+const uiuxOverview = document.getElementById("uiuxOverview");
+const uiuxTools = document.getElementById("uiuxTools");
+const uiuxDevelopment = document.getElementById("uiuxDevelopment");
+const uiuxIdeation = document.getElementById("uiuxIdeation");
+const uiuxWireframing = document.getElementById("uiuxWireframing");
+const uiuxPrototype = document.getElementById("uiuxPrototype");
+const uiuxDevelopmentProcess =
+  document.getElementById("uiuxDevelopmentProcess");
+const uiuxScreenshots =
+  document.getElementById("uiuxScreenshots");
+
 let unsubscribe = null;
 
 function isAdmin() {
@@ -39,6 +50,7 @@ function isAdmin() {
 }
 
 function setStatus(message, color = "#65e6a0") {
+  if (!uiuxStatus) return;
   uiuxStatus.textContent = message;
   uiuxStatus.style.color = color;
 }
@@ -52,7 +64,96 @@ function validProjectLink(value) {
   }
 }
 
-// MENAMPILKAN PROYEK UI/UX DI DASHBOARD
+function validateImage(file) {
+  if (!file) {
+    throw new Error("Pilih gambar terlebih dahulu.");
+  }
+
+  if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+    throw new Error("Gunakan gambar JPG, PNG, atau WebP.");
+  }
+
+  if (file.size > 10 * 1024 * 1024) {
+    throw new Error(
+      `Gambar "${file.name}" melebihi batas 10 MB.`
+    );
+  }
+}
+
+// Meminta tanda tangan upload dari Cloudflare Worker.
+async function getUploadSignature() {
+  const user = auth.currentUser;
+
+  if (!user || !isAdmin()) {
+    throw new Error("Silakan login sebagai admin.");
+  }
+
+  const idToken = await user.getIdToken();
+
+  const response = await fetch(`${WORKER_URL}/sign-upload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${idToken}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({})
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.error || "Verifikasi upload gagal.");
+  }
+
+  if (
+    !result.signature ||
+    !result.timestamp ||
+    !result.apiKey ||
+    !result.folder
+  ) {
+    throw new Error("Data signature Cloudinary tidak lengkap.");
+  }
+
+  return result;
+}
+
+// Upload satu gambar ke Cloudinary.
+async function uploadImage(file) {
+  validateImage(file);
+
+  const signResult = await getUploadSignature();
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("api_key", signResult.apiKey);
+  formData.append("timestamp", String(signResult.timestamp));
+  formData.append("signature", signResult.signature);
+  formData.append("folder", signResult.folder);
+  formData.append("overwrite", String(signResult.overwrite));
+
+  const response = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    {
+      method: "POST",
+      body: formData
+    }
+  );
+
+  const result = await response.json();
+
+  if (!response.ok || !result.secure_url) {
+    throw new Error(
+      result.error?.message || "Upload Cloudinary gagal."
+    );
+  }
+
+  return {
+    url: result.secure_url,
+    publicId: result.public_id
+  };
+}
+
+// Menampilkan proyek di Admin Dashboard.
 onAuthStateChanged(auth, (user) => {
   if (unsubscribe) {
     unsubscribe();
@@ -99,18 +200,34 @@ onAuthStateChanged(auth, (user) => {
         const description = document.createElement("p");
         description.textContent = project.description || "";
 
-        const link = document.createElement("a");
-        link.textContent = "Lihat Proyek";
-        link.style.cssText =
+        const screenshotInfo = document.createElement("p");
+        const screenshotCount = Array.isArray(project.screenshots)
+          ? project.screenshots.length
+          : 0;
+
+        screenshotInfo.textContent =
+          `Screenshot tambahan: ${screenshotCount}`;
+
+        const detailLink = document.createElement("a");
+        detailLink.href =
+          `project-detail.html?id=${encodeURIComponent(projectDoc.id)}`;
+        detailLink.textContent = "Lihat Halaman Detail →";
+        detailLink.target = "_blank";
+        detailLink.rel = "noopener noreferrer";
+        detailLink.style.cssText =
+          "display:block;color:#59d8ff;margin-bottom:12px;";
+
+        const externalLink = document.createElement("a");
+        externalLink.textContent = "Buka Figma / Website";
+        externalLink.style.cssText =
           "display:block;color:#59d8ff;margin-bottom:15px;";
 
         if (validProjectLink(project.projectUrl || "")) {
-          link.href = project.projectUrl;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
+          externalLink.href = project.projectUrl;
+          externalLink.target = "_blank";
+          externalLink.rel = "noopener noreferrer";
         } else {
-          link.removeAttribute("href");
-          link.textContent = "Link proyek tidak tersedia";
+          externalLink.textContent = "Link proyek tidak tersedia";
         }
 
         const deleteButton = document.createElement("button");
@@ -132,13 +249,23 @@ onAuthStateChanged(auth, (user) => {
             await deleteDoc(
               doc(db, "uiux_projects", projectDoc.id)
             );
+
             alert("Proyek berhasil dihapus dari portfolio.");
           } catch (error) {
             alert("Gagal menghapus: " + error.message);
           }
         });
 
-        item.append(image, title, description, link, deleteButton);
+        item.append(
+          image,
+          title,
+          description,
+          screenshotInfo,
+          detailLink,
+          externalLink,
+          deleteButton
+        );
+
         uiuxList.appendChild(item);
       });
     },
@@ -151,7 +278,7 @@ onAuthStateChanged(auth, (user) => {
   );
 });
 
-// UPLOAD PROYEK UI/UX
+// Upload proyek UI/UX lengkap.
 uiuxForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -163,7 +290,11 @@ uiuxForm.addEventListener("submit", async (event) => {
   const title = uiuxTitle.value.trim();
   const description = uiuxDescription.value.trim();
   const projectUrl = uiuxLink.value.trim();
-  const file = uiuxFile.files[0];
+  const coverFile = uiuxFile.files[0];
+
+  const screenshotFiles = Array.from(
+    uiuxScreenshots?.files || []
+  );
 
   if (!title || !description || !validProjectLink(projectUrl)) {
     setStatus(
@@ -173,109 +304,82 @@ uiuxForm.addEventListener("submit", async (event) => {
     return;
   }
 
-  if (
-    !file ||
-    !["image/jpeg", "image/png", "image/webp"].includes(file.type)
-  ) {
-    setStatus(
-      "Gunakan gambar JPG, PNG, atau WebP.",
-      "#ff8585"
-    );
-    return;
-  }
+  try {
+    validateImage(coverFile);
 
-  if (file.size > 10 * 1024 * 1024) {
-    setStatus("Ukuran maksimal 10 MB.", "#ff8585");
+    screenshotFiles.forEach(validateImage);
+  } catch (error) {
+    setStatus(error.message, "#ff8585");
     return;
   }
 
   const submitButton = uiuxForm.querySelector(
     'button[type="submit"]'
   );
+
   submitButton.disabled = true;
 
   try {
-    setStatus("Memverifikasi akun admin...");
+    setStatus("Mengupload gambar utama...");
 
-    const idToken = await auth.currentUser.getIdToken();
+    const cover = await uploadImage(coverFile);
 
-    setStatus("Meminta izin upload aman...");
+    const screenshots = [];
 
-    const signResponse = await fetch(
-      `${WORKER_URL}/sign-upload`,
-      {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${idToken}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({})
-      }
-    );
+    for (let i = 0; i < screenshotFiles.length; i++) {
+      const file = screenshotFiles[i];
 
-    const signResult = await signResponse.json();
-
-    if (!signResponse.ok) {
-      throw new Error(
-        signResult.error || "Verifikasi upload gagal."
+      setStatus(
+        `Mengupload screenshot ${i + 1} dari ${screenshotFiles.length}...`
       );
+
+      const uploaded = await uploadImage(file);
+
+      screenshots.push({
+        url: uploaded.url,
+        publicId: uploaded.publicId,
+        caption: file.name.replace(/\.[^.]+$/, "")
+      });
     }
 
-    if (
-      !signResult.signature ||
-      !signResult.timestamp ||
-      !signResult.apiKey ||
-      !signResult.folder
-    ) {
-      throw new Error(
-        "Data signature Cloudinary tidak lengkap."
-      );
-    }
-
-    setStatus("Mengupload gambar ke Cloudinary...");
-
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("api_key", signResult.apiKey);
-    formData.append("timestamp", String(signResult.timestamp));
-    formData.append("signature", signResult.signature);
-    formData.append("folder", signResult.folder);
-    formData.append("overwrite", String(signResult.overwrite));
-
-    const uploadResponse = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-      {
-        method: "POST",
-        body: formData
-      }
-    );
-
-    const uploadResult = await uploadResponse.json();
-
-    if (!uploadResponse.ok || !uploadResult.secure_url) {
-      throw new Error(
-        uploadResult.error?.message ||
-        "Upload Cloudinary gagal."
-      );
-    }
-
-    setStatus("Menyimpan proyek ke Firebase...");
+    setStatus("Menyimpan detail proyek ke Firebase...");
 
     await addDoc(collection(db, "uiux_projects"), {
       title,
       description,
       projectUrl,
-      imageUrl: uploadResult.secure_url,
-      publicId: uploadResult.public_id,
+      imageUrl: cover.url,
+      publicId: cover.publicId,
+
+      overview: uiuxOverview?.value.trim() || "",
+      tools: uiuxTools?.value.trim() || "",
+      development: uiuxDevelopment?.value.trim() || "",
+      category: "UI/UX Design",
+
+      ideation: uiuxIdeation?.value.trim() || "",
+      wireframing: uiuxWireframing?.value.trim() || "",
+      prototype: uiuxPrototype?.value.trim() || "",
+      developmentProcess:
+        uiuxDevelopmentProcess?.value.trim() || "",
+
+      screenshots,
+
       createdAt: serverTimestamp()
     });
 
     uiuxForm.reset();
-    setStatus("Proyek UI/UX berhasil ditambahkan!");
+
+    setStatus(
+      "Berhasil! Proyek dan seluruh screenshot sudah disimpan."
+    );
 
   } catch (error) {
     console.error("Upload UI/UX gagal:", error);
-    setStatus("Upload gagal: " + error.message, "#ff8585");
+
+    setStatus(
+      "Upload gagal: " + error.message,
+      "#ff8585"
+    );
   } finally {
     submitButton.disabled = false;
   }

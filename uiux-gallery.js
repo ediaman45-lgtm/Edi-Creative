@@ -25,6 +25,27 @@ function validProjectLink(value) {
   }
 }
 
+// Menentukan halaman tujuan proyek.
+function getProjectLink(project) {
+  const title = (project.title || "").trim().toLowerCase();
+
+  // Pertahankan halaman Game Hiburan.
+  if (
+    title === "membuat game hiburan" ||
+    title === "game hiburan"
+  ) {
+    return "game-hiburan.html";
+  }
+
+  // Jika proyek memiliki halaman khusus, gunakan halaman itu.
+  if (project.detailPage && validProjectLink(project.detailPage)) {
+    return project.detailPage;
+  }
+
+  // Semua proyek UI/UX lainnya membuka halaman detail otomatis.
+  return `project-detail.html?id=${encodeURIComponent(project.id)}`;
+}
+
 function renderUIUXProjects() {
   if (!galleryGrid || !galleryModal) return;
 
@@ -35,8 +56,7 @@ function renderUIUXProjects() {
     return;
   }
 
-  // Hapus hanya proyek UI/UX dinamis sebelumnya.
-  // Giftory yang sudah ada tetap dipertahankan.
+  // Hapus kartu dinamis saja. Giftory bawaan tidak dihapus.
   galleryGrid
     .querySelectorAll("[data-uiux-project]")
     .forEach((item) => item.remove());
@@ -61,20 +81,24 @@ function renderUIUXProjects() {
     img.loading = "lazy";
 
     const title = document.createElement("h3");
-    title.textContent = project.title || "Untitled UI/UX Project";
+    title.textContent =
+      project.title || "Untitled UI/UX Project";
 
     const description = document.createElement("p");
     description.textContent = project.description || "";
 
     item.append(img, title, description);
 
-    if (validProjectLink(project.projectUrl || "")) {
+    const projectLink = getProjectLink(project);
+
+    if (validProjectLink(projectLink)) {
       const link = document.createElement("a");
-      link.href = project.projectUrl;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
+
+      link.href = projectLink;
       link.className = "btn";
       link.textContent = "View Project →";
+      link.target = "_self";
+
       link.style.cssText =
         "display:inline-block;margin-top:20px;";
 
@@ -85,7 +109,6 @@ function renderUIUXProjects() {
   });
 }
 
-// Mengambil proyek UI/UX dari Firestore secara realtime
 onSnapshot(
   collection(db, "uiux_projects"),
   (snapshot) => {
@@ -112,16 +135,13 @@ onSnapshot(
   }
 );
 
-// Ketika tombol UI/UX diklik, tunggu script.js
-// selesai membuat tampilan Giftory.
 document.querySelectorAll('[data-gallery="uiux"]').forEach((button) => {
   button.addEventListener("click", () => {
     if (!galleryModal) return;
 
     galleryModal.dataset.activeCategory = "uiux";
 
-    // script.js menampilkan Giftory menggunakan setTimeout(0).
-    // Jalankan render setelah proses tersebut selesai.
+    // Tunggu script.js selesai menampilkan Giftory.
     setTimeout(renderUIUXProjects, 100);
   });
 });

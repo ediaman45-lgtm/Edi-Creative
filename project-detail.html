@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX Case Study | EDI CREATIVE</title>
+  <meta name="description" content="UI/UX project case study by EDI CREATIVE">
+
+  <link rel="stylesheet" href="giftory.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    .detail-status {
+      text-align: center;
+      padding: 130px 20px;
+      color: #aab4ca;
+    }
+
+    .detail-hidden {
+      display: none;
+    }
+
+    .detail-gallery img {
+      cursor: zoom-in;
+    }
+
+    .detail-gallery img:focus-visible {
+      outline: 3px solid #59d8ff;
+      outline-offset: 4px;
+    }
+
+    .detail-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, .94);
+      padding: 60px 24px 24px;
+    }
+
+    .detail-lightbox.active {
+      display: flex;
+    }
+
+    .detail-lightbox img {
+      max-width: 95vw;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    .detail-lightbox button {
+      position: absolute;
+      top: 15px;
+      right: 24px;
+      background: transparent;
+      border: 0;
+      color: white;
+      font-size: 36px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">EDI<span>CREATIVE.</span></a>
+    <a href="index.html#portfolio" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+  </header>
+
+  <div id="detailStatus" class="detail-status" role="status">
+    Memuat proyek...
+  </div>
+
+  <main id="projectContent" class="detail-hidden">
+
+    <section class="hero">
+      <div class="hero-glow"></div>
+
+      <p class="eyebrow">FEATURED UI/UX CASE STUDY</p>
+      <span class="project-badge" id="projectCategory">
+        UI/UX DESIGN
+      </span>
+
+      <h1>Meet <span id="projectTitle"></span></h1>
+      <p class="hero-description" id="projectDescription"></p>
+
+      <div class="hero-actions">
+        <a href="#overview" class="btn btn-primary">
+          Explore Case Study <i class="fas fa-arrow-down"></i>
+        </a>
+        <a href="#showcase" class="btn btn-outline">
+          View Project <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="project-preview">
+        <div class="preview-top">
+          <span>
+            <i class="fas fa-circle"></i> PROJECT PREVIEW
+          </span>
+          <span>EDI CREATIVE</span>
+        </div>
+        <div class="preview-content">
+          <div class="gift-icon">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <h2 id="previewTitle"></h2>
+          <p id="previewSubtitle"></p>
+          <div class="preview-tags">
+            <span>Research</span>
+            <span>Design</span>
+            <span>Prototype</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <p class="eyebrow">01 / PROJECT OVERVIEW</p>
+      <h2>Behind the <span>Experience.</span></h2>
+      <p class="section-description" id="projectOverview"></p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <i class="fas fa-layer-group"></i>
+          <h3>Project</h3>
+          <p id="infoProject"></p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-pen-ruler"></i>
+          <h3>Design Tools</h3>
+          <p id="infoTools"></p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-code"></i>
+          <h3>Development</h3>
+          <p id="infoDevelopment"></p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Category</h3>
+          <p id="infoCategory"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="eyebrow">02 / DESIGN PROCESS</p>
+      <h2>From Idea to <span>Interface.</span></h2>
+
+      <div class="process-grid">
+        <div class="process-card">
+          <span class="step-number">01</span>
+          <i class="fas fa-lightbulb"></i>
+          <h3>Ideation</h3>
+          <p id="processIdeation"></p>
+        </div>
+        <div class="process-card">
+          <span class="step-number">02</span>
+          <i class="fas fa-diagram-project"></i>
+          <h3>Wireframing</h3>
+          <p id="processWireframing"></p>
+        </div>
+        <div class="process-card">
+          <span class="step-number">03</span>
+          <i class="fab fa-figma"></i>
+          <h3>UI/UX Prototype</h3>
+          <p id="processPrototype"></p>
+        </div>
+        <div class="process-card">
+          <span class="step-number">04</span>
+          <i class="fas fa-laptop-code"></i>
+          <h3>Development</h3>
+          <p id="processDevelopment"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="showcase">
+      <p class="eyebrow">03 / PROJECT SHOWCASE</p>
+      <h2>Explore the <span>Results.</span></h2>
+      <p class="section-description">
+        Explore the project prototype and design results.
+      </p>
+
+      <div class="showcase-grid">
+        <article class="showcase-card">
+          <div class="showcase-art figma-art">
+            <i class="fab fa-figma fa-4x" aria-hidden="true"></i>
+          </div>
+          <div class="showcase-info">
+            <span>PROJECT LINK</span>
+            <h3>Interactive Project</h3>
+            <p>Explore the design prototype or published application.</p>
+            <a id="projectLink" class="project-link"
+               target="_blank" rel="noopener noreferrer">
+              Open Project
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="giftory-gallery" id="screens">
+      <p class="gallery-eyebrow">UI/UX DESIGN SCREENS</p>
+      <h2>Explore the <span>Project Screens</span></h2>
+      <p class="gallery-description">
+        Screenshots of the interface and design process.
+      </p>
+      <div id="projectScreens" class="giftory-screens detail-gallery"></div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">KEEP EXPLORING</p>
+      <h2>Design. Build. <span>Improve.</span></h2>
+      <p>Every project is an opportunity to create something meaningful.</p>
+      <a href="index.html#portfolio" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Back to My Portfolio
+      </a>
+    </section>
+
+  </main>
+
+  <div id="detailLightbox" class="detail-lightbox"
+       role="dialog" aria-modal="true" aria-label="Preview gambar"
+       aria-hidden="true">
+    <button id="detailLightboxClose" type="button"
+            aria-label="Tutup gambar">×</button>
+    <img id="detailLightboxImage" alt="Preview proyek">
+  </div>
+
+  <footer>© 2026 EDI CREATIVE. All rights reserved.</footer>
+
+  <script type="module" src="./project-detail.js"></script>
+</body>
+</html>

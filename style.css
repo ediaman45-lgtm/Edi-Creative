@@ -1816,3 +1816,69 @@ padding: 15px 20px 35px;
     grid-template-columns: 1fr;
   }
 }
+
+
+/* =====================================
+   UI/UX GALLERY - GIFTORY CARD
+===================================== */
+
+#galleryModal .gallery-grid:has([data-uiux-project])
+.portfolio-coming-soon {
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  background: #171c32;
+  border: 1px solid #343b58;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Batasi tinggi preview Giftory */
+#galleryModal .gallery-grid:has([data-uiux-project])
+.portfolio-coming-soon img {
+  width: 100% !important;
+  max-width: 260px !important;
+  height: 260px !important;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 16px !important;
+}
+
+/* Judul Giftory */
+#galleryModal .portfolio-coming-soon h3 {
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
+/* Deskripsi Giftory */
+#galleryModal .portfolio-coming-soon p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+/* Tombol Giftory */
+#galleryModal .portfolio-coming-soon .btn {
+  margin-top: auto !important;
+  display: inline-block;
+}
+
+/* Samakan tinggi kedua kartu UI/UX */
+#galleryModal .gallery-grid:has([data-uiux-project])
+.portfolio-coming-soon,
+#galleryModal .gallery-item[data-uiux-project] {
+  min-height: 480px;
+}
+
+/* Tampilan HP */
+@media (max-width: 650px) {
+  #galleryModal .gallery-grid:has([data-uiux-project])
+  .portfolio-coming-soon,
+  #galleryModal .gallery-item[data-uiux-project] {
+    min-height: 0;
+  }
+}

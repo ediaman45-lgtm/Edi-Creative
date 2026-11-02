@@ -370,6 +370,70 @@
 </div>
 <!-- END UI/UX DESIGN MANAGER -->
 
+
+<!-- VIDEO PROJECTS MANAGER -->
+<div class="manager-section">
+
+  <h2>🎬 Video Projects Manager</h2>
+
+  <p>
+    Tambahkan video portfolio melalui Admin Dashboard.
+  </p>
+
+  <h3>Tambah Video Baru</h3>
+
+  <form id="videoForm">
+
+    <input
+      type="text"
+      id="videoTitle"
+      placeholder="Judul Video"
+      required
+    >
+
+    <textarea
+      id="videoDescription"
+      placeholder="Deskripsi Video"
+      rows="4"
+      required
+    ></textarea>
+
+    <input
+      type="url"
+      id="videoUrl"
+      placeholder="Link YouTube atau video (https://...)"
+      required
+    >
+
+    <input
+      type="url"
+      id="videoThumbnail"
+      placeholder="Link gambar thumbnail (https://...)"
+    >
+
+    <button type="submit">
+      🎬 Tambah Video Project
+    </button>
+
+  </form>
+
+  <div
+    id="videoStatus"
+    class="status-message"
+    role="status"
+  ></div>
+
+  <h3>Daftar Video Projects</h3>
+
+  <div
+    id="videoList"
+    class="item-list"
+  ></div>
+
+</div>
+<!-- END VIDEO PROJECTS MANAGER -->
+
+
       <!-- LOGOUT -->
 
       <button
@@ -400,6 +464,8 @@
     type="module"
     src="./graphic-admin.js"
   ></script>
+
+  <script type="module" src="./video-admin.js"></script>
 
 </body>
 </html>

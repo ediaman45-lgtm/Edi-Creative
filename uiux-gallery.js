@@ -122,6 +122,6 @@ document.querySelectorAll('[data-gallery="uiux"]').forEach((button) => {
 
     // script.js menampilkan Giftory menggunakan setTimeout(0).
     // Jalankan render setelah proses tersebut selesai.
-    setTimeout(renderUIUXProjects, 0);
+    setTimeout(renderUIUXProjects, 100);
   });
 });

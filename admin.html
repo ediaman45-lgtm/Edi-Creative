@@ -503,6 +503,55 @@
 <!-- END VIDEO PROJECTS MANAGER -->
 
 
+<!-- CAMPUS HIGHLIGHTS MANAGER -->
+<section class="manager-section">
+  <h2><i class="fas fa-graduation-cap"></i> Campus Highlights</h2>
+  <p>Upload memories, activities, and achievements from BINUS.</p>
+
+  <form id="campusForm">
+    <label for="campusTitle">Judul Highlight</label>
+    <input
+      type="text"
+      id="campusTitle"
+      placeholder="Contoh: First Day at BINUS"
+      required
+    >
+
+    <label for="campusDescription">Deskripsi</label>
+    <textarea
+      id="campusDescription"
+      placeholder="Ceritakan momen atau kegiatan ini..."
+      rows="4"
+    ></textarea>
+
+    <label for="campusDate">Tanggal</label>
+    <input type="date" id="campusDate">
+
+    <label for="campusFiles">Foto (maksimal 10 foto)</label>
+    <input
+      type="file"
+      id="campusFiles"
+      accept="image/jpeg,image/png,image/webp"
+      multiple
+      required
+    >
+
+    <button type="submit">
+      <i class="fas fa-cloud-upload-alt"></i>
+      Upload Campus Highlight
+    </button>
+
+  <div
+  id="campusStatus"
+  class="status-message"
+  role="status"
+></div>
+  </form>
+
+  <div id="campusList" class="item-list"></div>
+</section>
+
+
       <!-- LOGOUT -->
 
       <button
@@ -535,6 +584,6 @@
   ></script>
 
   <script type="module" src="./video-admin.js"></script>
-
+<script type="module" src="./campus-highlights-admin.js"></script>
 </body>
 </html>
